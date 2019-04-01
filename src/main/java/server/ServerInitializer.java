@@ -25,7 +25,7 @@ public class ServerInitializer extends ChannelInitializer<SocketChannel> {
 
 		pipeline.addLast("HttpServerCodec", new HttpServerCodec());
 		// 添加自定义的助手类，返回hello netty~
-		pipeline.addLast("customer", new CustomerHander());
+		pipeline.addLast("customer", new CustomerHandler());
 
 	}
 }

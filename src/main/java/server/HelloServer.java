@@ -25,12 +25,12 @@ public class HelloServer {
 		try {
 			// 服务端的启动类 ，netty服务器的创建
 			ServerBootstrap serverBootstrap = new ServerBootstrap();
-			serverBootstrap.group(bossGroup, workerGroup)// 设置主从县城组
+			// 设置主从线程组
+			serverBootstrap.group(bossGroup, workerGroup)
 					// 设置nio双向通道
 					.channel(NioServerSocketChannel.class)
 					// 子处理器，用于处理workerGroup
 					.childHandler(new ServerInitializer());
-
 			// 启动server,并且设置8088为启动端口号，同时启动为同步方式
 			ChannelFuture future = serverBootstrap.bind(8088).sync();
 			// 监听关闭的channel,设置为同步方式

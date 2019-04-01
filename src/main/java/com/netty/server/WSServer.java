@@ -31,7 +31,5 @@ public class WSServer {
 			mainGroup.shutdownGracefully();
 			subGroup.shutdownGracefully();
 		}
-
-
 	}
 }

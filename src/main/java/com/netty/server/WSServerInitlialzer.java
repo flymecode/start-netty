@@ -30,9 +30,7 @@ public class WSServerInitlialzer extends ChannelInitializer<SocketChannel> {
 		pipeline.addLast(new HttpObjectAggregator(1024*64));
 		// 本handler会帮你处理一些繁重的复杂的事情
 		// 会帮你处理握手动作，handshaking  ping + pong = 心跳
-
 		pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
-
 		pipeline.addLast(null);
 
 	}

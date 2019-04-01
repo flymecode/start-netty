@@ -15,22 +15,22 @@ import io.netty.util.CharsetUtil;
 
 /**
  * 创建自定义助手类
- *
+ * SimpleChannelInboundHandler:对请求来讲相当于入站
  * @author maxu
  */
-public class CustomerHander extends SimpleChannelInboundHandler<HttpObject> {
+public class CustomerHandler extends SimpleChannelInboundHandler<HttpObject> {
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext channelHandlerContext, HttpObject httpObject) throws Exception {
 		// 获取channel
 		Channel channel = channelHandlerContext.channel();
-		// 显示客户端的远程地址
 		if (httpObject instanceof HttpRequest) {
+			// 显示客户端的远程地址
 			System.out.println(channel.remoteAddress());
 			// 缓冲区，将数据拷贝到缓冲区
 			ByteBuf content = Unpooled.copiedBuffer("Hello.netty", CharsetUtil.UTF_8);
 			// 构建一个HttpResponse
-			FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_0,HttpResponseStatus.OK,content);
+			FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,HttpResponseStatus.OK,content);
 			response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
 			response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());
 			// 把响应加到客户端

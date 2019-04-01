@@ -1,8 +1,3 @@
-/**
- * @author: maxu1
- * @date: 2019/1/30 20:40
- */
-
 package com.netty.server;
 
 import io.netty.channel.ChannelHandlerContext;
@@ -50,7 +45,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
 
 	@Override
 	public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-		// 当出发handlerRemoved，ChannelGroup会自动一处客户端的channel
+		// 当触发handlerRemoved，ChannelGroup会自动移除客户端的channel
 		// clients.remove(ctx.channel());
 		super.handlerRemoved(ctx);
 	}
